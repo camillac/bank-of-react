@@ -40,7 +40,7 @@ class App extends Component {
     e.preventDefault();
     this.setState({ creditList: this.state.creditList.concat([{
       id: crypto.randomUUID(),
-      amount: parseFloat(e.target.elements.amount.value),
+      amount: parseFloat(e.target.elements.amount.value).toFixed(2),
       description: e.target.elements.description.value,
       date: new Date().toISOString(),
     }]) });
@@ -53,7 +53,7 @@ class App extends Component {
     e.preventDefault();
     this.setState({ debitList: this.state.debitList.concat([{
       id: crypto.randomUUID(),
-      amount: parseFloat(e.target.elements.amount.value),
+      amount: parseFloat(e.target.elements.amount.value).toFixed(2),
       description: e.target.elements.description.value,
       date: new Date().toISOString(),
     }]) });
@@ -82,7 +82,7 @@ class App extends Component {
     debits.forEach((debit) => {
       debitSum += debit.amount;
     })
-    
+
     credits.forEach((credit) => {
       creditSum += credit.amount;
     })
