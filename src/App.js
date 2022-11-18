@@ -30,16 +30,22 @@ class App extends Component {
 
   // Update state's currentUser (userName) after "Log In" button is clicked
   mockLogIn = (logInInfo) => {
-    const newUser = {...this.state.currentUser}
-    newUser.userName = logInInfo.userName
-    this.setState({currentUser: newUser})
+    const newUser = {...this.state.currentUser};
+    newUser.userName = logInInfo.userName;
+    this.setState({currentUser: newUser});
   }
 
-  // Update state's currentUser (userName) after "Log In" button is clicked
-  addCredit = (creditInfo) => {
-    this.setState(previousState => ({
-      creditList: [...previousState.creditList, creditInfo]
-    }));
+  // Update creditList after credit description + amount is submitted
+  addCredit = (e) => {
+    e.preventDefault();
+    this.setState({ creditList: this.state.creditList.concat([{
+      id: crypto.randomUUID(),
+      amount: parseFloat(e.target.elements.amount.value),
+      description: e.target.elements.description.value,
+      date: new Date().toISOString(),
+    }]) });
+
+    this.setState({accountBalance: (parseFloat(this.state.accountBalance) + parseFloat(e.target.elements.amount.value)).toFixed(2)})
   }
 
   // Update debitList after debit description + amount is submitted
@@ -51,18 +57,38 @@ class App extends Component {
       description: e.target.elements.description.value,
       date: new Date().toISOString(),
     }]) });
+
+    this.setState({accountBalance: (parseFloat(this.state.accountBalance) - parseFloat(e.target.elements.amount.value)).toFixed(2)})
+
   }
 
   // Grabs Credit/Debit data from API
   async componentDidMount(){
-    fetch('https://moj-api.herokuapp.com/credits').then((response) => response.json())
+    await fetch('https://moj-api.herokuapp.com/credits').then((response) => response.json())
     .then(credits => {
         this.setState({ creditList: credits });
     });
-    fetch('https://moj-api.herokuapp.com/debits').then((response) => response.json())
+    await fetch('https://moj-api.herokuapp.com/debits').then((response) => response.json())
     .then(debits => {
         this.setState({ debitList: debits});
     });
+
+    let debits = this.state.debitList;
+    let credits = this.state.creditList;
+
+    let creditSum=0;
+    let debitSum=0;
+
+    debits.forEach((debit) => {
+      debitSum += debit.amount;
+    })
+    
+    credits.forEach((credit) => {
+      creditSum += credit.amount;
+    })
+
+    let updatedAccountBalance = (creditSum - debitSum).toFixed(2);
+    this.setState({accountBalance: updatedAccountBalance});
   }
 
   // Create Routes and React elements to be rendered using React components
