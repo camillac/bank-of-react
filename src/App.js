@@ -49,6 +49,13 @@ class App extends Component {
     // this.setState({currentUser: newUser})
   }
 
+  componentDidMount(){
+    fetch('https://moj-api.herokuapp.com/credits').then((response) => response.json())
+    .then(credits => {
+        this.setState({ creditList: credits });
+    });
+  }
+
   // Create Routes and React elements to be rendered using React components
   render() {
     // Create React elements and pass input props to components
