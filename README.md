@@ -1,6 +1,12 @@
 # CSCI 39548: Assignment 4 - Bank Of React
 This repository contains a React application example on how to implement client-side routing with React Router and its components including Route, Router Link, and Redirect.
 
+Group member:
+
+Camilla Cheng - camillac
+
+[Link to website](https://camillac.github.io/bank-of-react)
+
 ### Use the following commands to run the application
 
 - First, run this command to install dependencies:
