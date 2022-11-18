@@ -54,7 +54,7 @@ class App extends Component {
     .then(credits => {
         this.setState({ creditList: credits });
     });
-    fetch('https://moj-api.herokuapp.com/credits').then((response) => response.json())
+    fetch('https://moj-api.herokuapp.com/debits').then((response) => response.json())
     .then(debits => {
         this.setState({ debitList: debits});
     });
