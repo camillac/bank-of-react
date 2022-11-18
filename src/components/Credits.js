@@ -13,7 +13,7 @@ const Credits = (props) => {
     const { credits } = props;
     return credits.map((credit) => {  // Extract "id", "amount", "description" and "date" properties of each debits JSON array element
       let date = credit.date.slice(0,10);
-      return <li key={credit.id}>{credit.amount} {credit.description} {date}</li>
+      return <li key={credit.id}>${credit.amount} {credit.description} {date}</li>
     })
   }
   // Render the list of Debit items and a form to input new Debit item
