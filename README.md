@@ -1,4 +1,4 @@
-# bank-of-react-example-code-gh-pages
+# CSCI 39548: Assignment 4 - Bank Of React
 This repository contains a React application example on how to implement client-side routing with React Router and its components including Route, Router Link, and Redirect.
 
 ### Use the following commands to run the application
@@ -11,7 +11,7 @@ This repository contains a React application example on how to implement client-
 Note: This application uses React Router version 5. Optionally, you can run the following command to install React Router version 5 dependencies:
 ```npm install react-router-dom@5.3.0 react-router@5.2.1```
 
-### Live Link 
+### Live Link
 [Website link](https://johnnylaicode.github.io/bank-of-react-example-code-gh-pages/)
 
 ----------
@@ -25,7 +25,7 @@ Note: This application uses React Router version 5. Optionally, you can run the 
 2. Create a React application named "my-react-app" by entering the command: `npx create-react-app my-react-app`
 3. Copy the files from the "bank-of-react-example-code-gh-pages" folder into the "my-react-app" folder.
 4. Go into the "my-react-app" folder.
-5. All the following steps can be performed inside the "my-react-app" folder. 
+5. All the following steps can be performed inside the "my-react-app" folder.
 
 #### 3. Add "basename" to Router Tag in "App.js" File
 1. In the `App.js` file (see line 38), located inside the `src` folder, make sure that you add the `basename` path in the `<Router>` tag using the following format: `<Router basename="/[repository name]">`
@@ -37,7 +37,7 @@ Note: This application uses React Router version 5. Optionally, you can run the 
 
 #### 5. Add "homepage" Property in "package.json" File
 1. In the `package.json` file (see line 4), add a `homepage` property using the following format: `https://[your GitHub username].github.io/[repository name]`
-2. For the "my-react-app" application, it should be:`"homepage": "https://[your GitHub username].github.io/my-react-app/",` 
+2. For the "my-react-app" application, it should be:`"homepage": "https://[your GitHub username].github.io/my-react-app/",`
     ```
     {
     "name": "bank-of-react",
@@ -58,8 +58,8 @@ Note: This application uses React Router version 5. Optionally, you can run the 
 
 #### 7. Add "remote" to Local Repository to point to GitHub Repository
 1. Add a `remote` to the local repository by entering the command in the following format: `git remote add origin https://github.com/[your GitHub username]/[repository name].git`
-2. For the "my-react-app" application, it should be:`git remote add origin https://github.com/[your GitHub username]/my-react-app.git` 
+2. For the "my-react-app" application, it should be:`git remote add origin https://github.com/[your GitHub username]/my-react-app.git`
 
 #### 8. Deploy React Application to GitHub Pages
 1. Deploy the "my-react-app" application to GitHub Pages by entering the command: `npm run deploy`
-2. Open a web browser, go to the following address to see your React application on GitHub Pages: `https://[your GitHub username].github.io/my-react-app/` 
+2. Open a web browser, go to the following address to see your React application on GitHub Pages: `https://[your GitHub username].github.io/my-react-app/`
