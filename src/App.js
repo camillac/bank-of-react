@@ -18,7 +18,7 @@ class App extends Component {
   constructor() {  // Create and initialize state
     super();
     this.state = {
-      accountBalance: 1234567.89,
+      accountBalance: 0,
       creditList: [],
       debitList: [],
       currentUser: {
@@ -42,14 +42,19 @@ class App extends Component {
     }));
   }
 
-  // Update state's currentUser (userName) after "Log In" button is clicked
-  addDebit = (debitInfo) => {
-    // const newUser = {...this.state.currentUser}
-    // newUser.userName = logInInfo.userName
-    // this.setState({currentUser: newUser})
+  // Update debitList after debit description + amount is submitted
+  addDebit = (e) => {
+    e.preventDefault();
+    this.setState({ debitList: this.state.debitList.concat([{
+      id: crypto.randomUUID(),
+      amount: parseFloat(e.target.elements.amount.value),
+      description: e.target.elements.description.value,
+      date: new Date().toISOString(),
+    }]) });
   }
 
-  componentDidMount(){
+  // Grabs Credit/Debit data from API
+  async componentDidMount(){
     fetch('https://moj-api.herokuapp.com/credits').then((response) => response.json())
     .then(credits => {
         this.setState({ creditList: credits });
@@ -68,8 +73,8 @@ class App extends Component {
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince} />
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)
-    const DebitsComponent = () => (<Debits debits={this.state.debitList} addDebit={this.addDebit}/>)
-    const CreditsComponent = () => (<Credits credits={this.state.creditList} addCredit={this.addCredit}/>)
+    const DebitsComponent = () => (<Debits debits={this.state.debitList} addDebit={this.addDebit} accountBalance={this.state.accountBalance}/>)
+    const CreditsComponent = () => (<Credits credits={this.state.creditList} addCredit={this.addCredit} accountBalance={this.state.accountBalance}/>)
 
     // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages
     return (
